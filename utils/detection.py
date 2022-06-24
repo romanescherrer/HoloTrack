@@ -1,3 +1,19 @@
+import numpy as np
+
+
+def xywhn_xyxy_box(box,N):
+    '''convert a box in the xywhn format to xyxy format'''
+    xc = box[:,0:1]*N
+    yc = box[:,1:2]*N
+    w = box[:,2:3]*N
+    h = box[:,3:4]*N
+    x1 = xc-w/2
+    y1 = yc-h/2
+    x2 = x1+w
+    y2 = y1+h
+
+    xyxy = np.hstack((x1,y1,x2,y2))
+    return(xyxy)
 
 
 def xyxy_xywh_norm(x1,y1,x2,y2,N):
