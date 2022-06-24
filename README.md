@@ -18,4 +18,13 @@ Download the paper [here](https://www.researchgate.net/publication/355926011_Aut
 
 ## Hologram simulation
 
-The holograms are simulated from bright-field microscopy images that are labeled and saved as ROI. A sample of the dataset can be find in `dataset/train`.  The full dataset (In Situ Ichthyoplankton Imaging System) is open source and can be downloaded from [kaggle](https://www.kaggle.com/competitions/datasciencebowl/data)
+The holograms are simulated from bright-field microscopy images that are labeled and saved as ROI. A sample of the dataset can be find in `dataset/train`.  The full dataset (In Situ Ichthyoplankton Imaging System) is open source and can be downloaded from [kaggle](https://www.kaggle.com/competitions/datasciencebowl/data).
+
+To create a dataset, run : 
+```bash
+python create_datsaset.py --data dataset/train --project Images --nb 50
+```
+
+## Hologram Tracking
+
+A trained YOLOv5s can be found in the folder  `models/Holo/small/`.
