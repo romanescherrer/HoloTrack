@@ -37,6 +37,9 @@ def plotbbox(I,bboxes,classes=None, dpi=300,title=None,color = 'r'):
     ax.set_xticks([])
     ax.set_yticks([])
 
+
+
+
 def plotbboxFormat(I,bboxes,format = 'xyxy',classes=[], dpi=300,title=None,color = 'r'):
     ''' bboxes are in the format xywh normalized (yolov5 format)'''
     fig,ax = plt.subplots(dpi=300)
@@ -80,3 +83,36 @@ def plotbboxFormat(I,bboxes,format = 'xyxy',classes=[], dpi=300,title=None,color
                 cl = int(classes[i])
                 plt.text(xc-w//2,yc-h//2, str(cl),color=color)
             ax.add_patch(rect)
+
+
+def plotPredGT(I,trueBox,trueCls,predBox,predcls):
+    ''' the bboxes should be in the xyxy format '''
+    fig,ax = plt.subplots(dpi=300)
+
+    ax.imshow(I,'gray')
+    N,_= I.shape
+    ax.set_xticks([])
+    ax.set_yticks([])
+
+    # plot ground truth bounding boxes
+    for i in range(len(trueBox)):
+        x1 =  trueBox[i][0]
+        y1 = trueBox[i][1]
+        x2 = trueBox[i][2]
+        y2 = trueBox[i][3]
+        rect = patches.Rectangle((x1,y1), abs(x2-x1), abs(y2-y1), linewidth=1, edgecolor='g', facecolor='none')
+        if len(trueCls)>0:
+            cl = int(trueCls[i])
+            plt.text(x1,y1,str(cl),color='g')
+        ax.add_patch(rect)
+    # plot ground truth bounding boxes
+    for i in range(len(predBox)):
+        x1 =  predBox[i][0]
+        y1 = predBox[i][1]
+        x2 = predBox[i][2]
+        y2 = predBox[i][3]
+        rect = patches.Rectangle((x1,y1), abs(x2-x1), abs(y2-y1), linewidth=1, edgecolor='r', facecolor='none')
+        if len(predcls)>0:
+            cl = int(predcls[i])
+            plt.text(x2,y2,str(cl),color='r')
+        ax.add_patch(rect)
