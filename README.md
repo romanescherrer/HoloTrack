@@ -20,11 +20,13 @@ Download the paper [here](https://www.researchgate.net/publication/355926011_Aut
 
 The holograms are simulated from bright-field microscopy images that are labeled and saved as ROI. A sample of the dataset can be found in `dataset/train`.  The full dataset (In Situ Ichthyoplankton Imaging System) is open source and can be downloaded from [kaggle](https://www.kaggle.com/competitions/datasciencebowl/data).
 
-To create a hologram dataset for object detection, run :
+To create a hologram dataset for an object detection task, run :
 ```bash
 python create_dataset.py --data dataset/train --project Images --nb 50
 ```
-The holograms and the corresponding label files (yolov5 format) are created and saved in `Images/Holo/train`.
+where nb is the number of images to simulate. The script will use the images in `dataset/train` to simulate the transmission function and the corresponding holograms.
+
+The holograms and the ground-truth files (yolov5 format) are created and saved in `Images/Holo/train`.
 
 ## Hologram detection
 To train a model to detect the plankton on the raw holograms, clone the [yolov5 repo](https://github.com/ultralytics/yolov5)
@@ -35,3 +37,7 @@ To compute the model performances (mAP,AP,...) we used the [Open-Source Visual I
 
 
 ## Hologram Tracking
+To create a hologram dataset for an Multi-object detection task, run :
+```bash
+python create_MOT_files.py --data dataset/train --mot-challenge-name Holo --nbframes 50 --nbsim 2
+```
