@@ -8,7 +8,6 @@ If you use this code for your research, please consider citing:
 author = {Scherrer, Romane and Govan, Rodrigue and Quiniou, Thomas and Jauffrais, Thierry and Hugues, Lemonnier and Bonnet, Sophie and Selmaoui, Nazha},
 year = {2021},
 month = {11},
-pages = {},
 title = {Automatic Plankton Detection and Classification on Raw Hologram with a Single Deep Learning Architecture}
 }
 ```
@@ -42,6 +41,6 @@ Note that we used torch.hub.load() to load the trained model, so you need Python
 
 To create a hologram dataset for a Multi-object detection task, run :
 ```bash
-python create_MOT_files.py --data dataset/train --mot-challenge-name Holo --nbframes 50 --nbsim 2--weights Holotrack/models/Holo/small/best.pt
+python create_MOT_files.py --data dataset/train --mot-challenge-name Holo --nbframes 50 --nbsim 2 --weights Holotrack/models/Holo/small/best.pt
 ```
 The script will use the images in `dataset/train` to simulate the plankton motion in a 2D channel. It does not save the videos, but stores the ground truth labels and tracking predictions in `MOT_data/` folder that can be used with [TrackEval](https://github.com/JonathonLuiten/TrackEval) that provides code for a number of different tracking evaluation metrics.  
